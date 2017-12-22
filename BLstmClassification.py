@@ -157,7 +157,7 @@ def predict(out_path,txt,top=1):
         import re
         r=re.compile(r'[\W]', re.U)
         txt=[re.sub('[\\s]+',' ',r.sub(' ',' '.join((str(token.tag_)+'parsed').lower() if str(token.tag_) in ('NN','VB') else str(token.lemma_).lower() for token in nlp(txt))))]
-        
+        #print (txt)
         #convert text to sequence 
         from gensim.models.wrappers import FastText
         emb_model=FastText.load_fasttext_format(os.path.join(out_path,'ftmodel.bin'),encoding=encoding_type)
@@ -180,6 +180,9 @@ def predict(out_path,txt,top=1):
     else:
         return "Invalid output path!"        
 
+###Train the net
 net=BiLstmTextClassification()
-net.train_with_embeddings(inp_path="D:\\Projects\\Github\\question_classification\\LabelledData.txt",out_path='D:\\ML_Models\\niki',encoding_type='ISO-8859-1',delimiter=',,,',emb_dim=100,seq_length=20,stratify='y',test_split=0.2,bch_siz=50,epoch=72)
-print(predict(out_path='D:\\ML_Models\\niki',txt="What time does the train leave ?"))
+net.train_with_embeddings(inp_path="D:\\Projects\\Github\\question_classification\\LabelledData.txt",out_path='D:\\ML_Models\\niki',encoding_type='ISO-8859-1',delimiter=',,,',emb_dim=100,seq_length=20,stratify='y',test_split=0.2,bch_siz=50,epoch=68)
+
+#predict the output
+print(predict(out_path='D:\\ML_Models\\niki',txt="What is your name?"))
