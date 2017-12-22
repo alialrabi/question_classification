@@ -1,6 +1,6 @@
 # question_classification
 Use BiLSTM along with spacy for classifying a question type
-<h3>Dependencies<h3>
+<h3>Dependencies</h3>
 <br>
 Fasttext: https://pypi.python.org/pypi/fasttext <br />
 Tensorflow: https://www.tensorflow.org/install/ <br />
